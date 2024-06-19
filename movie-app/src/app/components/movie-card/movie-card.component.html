@@ -1,0 +1,32 @@
+<p-card>
+  <ng-template pTemplate="header">
+    <img
+      alt="{{ data.title }}"
+      [src]="data.backdrop_path"
+      class="movie-card__image"
+    />
+  </ng-template>
+  <div class="movie-card__details">
+    <h2 class="movie-card__title">{{ data.title }}</h2>
+    <p class="movie-card__overview">{{ data.overview }}</p>
+    <p class="movie-card__rating">Рейтинг: {{ data.vote_average }}</p>
+    <p class="movie-card__relise">
+      Дата виходу: {{ data.release_date | dateFormat }}
+    </p>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button
+      class="button"
+      (click)="addToFavorites()"
+      label="❤️"
+      severity="secondary"
+      title="Додати до улюблених"
+    />
+    <p-button
+      class="button"
+      (click)="addToWatchList()"
+      label="⭐️"
+      title="Додати до списку перегляду"
+    />
+  </ng-template>
+</p-card>
