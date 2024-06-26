@@ -1,0 +1,18 @@
+<h2>Play Now</h2>
+<app-header
+  [favoriteMoviesIds]="favoriteMoviesIds"
+  [watchLaterMovieIds]="watchLaterMovieIds"
+></app-header>
+<div class="movie-list">
+  <div class="movie-list__card-container">
+    @if (movies.length>0) { @for (item of movies; track item.id) {
+    <app-movie-card
+      class="movie-card"
+      [data]="item"
+      (addFavorite)="handleAddToFavorite(item)"
+      (addWatchList)="handleAddToWatchList(item)"
+    >
+    </app-movie-card>
+    } }
+  </div>
+</div>

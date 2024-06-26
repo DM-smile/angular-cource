@@ -1,0 +1,24 @@
+{
+	"files": [
+		{
+			"path": "movie-app/src/assets/notes/notes.txt",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "movie-app/src/assets/notes/timecodes.txt",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": ""
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,23 @@
+@use "sass:math";
+@import "../../../assets/scss/functions.scss";
+// ==================================== //
+
+.header-nav {
+   border-bottom: toRem(1) solid rgb(255, 255, 255);
+   display: flex;
+   gap: toRem(40);
+   min-height: toRem(50);
+   padding: 0 toRem(50) 0 toRem(50);
+   background-color: rgb(55, 55, 55);
+}
+.link {
+   font-size: toRem(30);
+   border-radius: toRem(10);
+   padding: toRem(10);
+   @media (any-hover: hover) {
+      transition: all 0.3s;
+      &:hover {
+         background-color: grey;
+      }
+   }
+}

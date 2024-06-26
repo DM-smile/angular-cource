@@ -1,0 +1,8 @@
+@if(watchListMovies.length > 0){
+<h2>Watch list movies:</h2>
+}
+<div class="watch-list-container">
+  @for (item of watchListMovies; track item.id) {
+  <app-movie-card [data]="item"></app-movie-card>
+  }
+</div>
