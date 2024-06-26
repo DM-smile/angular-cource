@@ -11,10 +11,6 @@
     } }
   </div>
   @if (favoriteMovies.length > 0 || watchListMovies.length > 0) {
-  <div class="movie-list__titles">
-    <h2>Улюблені фільми:</h2>
-    <h2>Список перегляду:</h2>
-  </div>
   <div class="movie-list__select-block block-select">
     <div class="block-select__favorite-list">
       @if (favoriteMovies.length>0) { @for (item of favoriteMovies; track

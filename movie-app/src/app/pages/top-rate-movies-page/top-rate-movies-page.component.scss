@@ -1,0 +1,43 @@
+@use "sass:math";
+@import "../../../assets/scss/functions.scss";
+// ==================================== //
+.movie-list {
+   // .movie-list__card-container
+   background-color: rgb(55, 55, 55);
+   &__card-container {
+      display: flex;
+      gap: toRem(10);
+      flex-wrap: wrap;
+      padding: toRem(10);
+      border-radius: toRem(5);
+      justify-content: center;
+   }
+
+   // .movie-list__titles
+
+   &__titles {
+   }
+
+   // .movie-list__select-block
+
+   &__select-block {
+   }
+}
+.movie-card {
+}
+.block-select {
+   // .block-select__favorite-list
+
+   &__favorite-list {
+   }
+
+   // .block-select__watch-list
+
+   &__watch-list {
+   }
+}
+h2 {
+   font-size: toRem(50);
+   margin-bottom: toRem(10);
+   text-align: center;
+}
