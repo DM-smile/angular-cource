@@ -1,11 +1,4 @@
 <nav class="header-nav">
-  <button
-    class="link"
-    (click)="navigateWithData(favoriteMoviesIds, 'favorite')"
-  >
-    Favorites
-  </button>
-  <button class="link" (click)="navigateWithData(watchLaterMovieIds)">
-    WatchList
-  </button>
+  <a class="link" routerLink="/favorite">Favorites</a>
+  <a class="link" routerLink="/watch-list">WatchList</a>
 </nav>

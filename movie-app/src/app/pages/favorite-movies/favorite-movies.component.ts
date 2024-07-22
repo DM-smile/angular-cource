@@ -3,7 +3,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { CommonModule } from '@angular/common';
 import { MovieListComponent } from '../../components/movie-list/movie-list.component';
-import { ActivatedRoute } from '@angular/router';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
    selector: 'app-favorite-movies',
@@ -13,29 +13,12 @@ import { ActivatedRoute } from '@angular/router';
    styleUrl: './favorite-movies.component.scss'
 })
 export class FavoriteMoviesComponent implements OnInit {
+   favoriteMovies: any
+   constructor(private movieService: MovieService) { }
 
-   constructor(private route: ActivatedRoute) { }
-
-
-   public favoriteMovies: any = []
-   public watchListMovies: any = []
    data: any;
 
    ngOnInit() {
-      this.route.queryParams.subscribe((params: { [x: string]: any; }) => {
-         const dataString = params['data'];
-         this.favoriteMovies = dataString ? JSON.parse(dataString) : [];
-      });
-   }
-
-   handleAddToFavorite(item: any) {
-      if (!this.favoriteMovies.includes(item))
-         this.favoriteMovies.push(item)
-      console.log(this.favoriteMovies)
-   }
-
-   handleAddToWatchList(item: any) {
-      if (!this.watchListMovies.includes(item))
-         this.watchListMovies.push(item)
+      this.favoriteMovies = this.movieService.getToFavoritesMovie()
    }
 }

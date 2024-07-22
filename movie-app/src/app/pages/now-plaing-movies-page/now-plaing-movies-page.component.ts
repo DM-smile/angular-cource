@@ -4,7 +4,8 @@ import { MovieCardComponent } from '../../components/movie-card/movie-card.compo
 import { CommonModule } from '@angular/common';
 import { MovieListComponent } from '../../components/movie-list/movie-list.component';
 import { Router } from '@angular/router';
-import { nowPlayingMovies } from '../../../assets/mock/mock-data';
+import { nowPlayingMovies } from '../../mock/mock-data';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
    selector: 'app-now-plaing-movies-page',
@@ -15,28 +16,13 @@ import { nowPlayingMovies } from '../../../assets/mock/mock-data';
 })
 export class NowPlaingMoviesPageComponent {
 
-   constructor(private router: Router) {
-
-   }
-
-   redirectToDetailsPage(id: string) {
-      this.router.navigate([`movie/:${id}`])
-   }
-
-   movies = nowPlayingMovies
-
-   public favoriteMoviesIds: string[] = []
-   public watchLaterMovieIds: string[] = []
+   nowPlaingMovies: any[] = []
 
 
-   handleAddToFavorite(item: any) {
-      if (!this.favoriteMoviesIds.includes(item))
-         this.favoriteMoviesIds.push(item)
-   }
+   constructor(private movieService: MovieService) { }
 
-   handleAddToWatchList(item: any) {
-      if (!this.watchLaterMovieIds.includes(item))
-         this.watchLaterMovieIds.push(item)
+   ngOnInit(): void {
+      this.nowPlaingMovies = this.movieService.getNowPlayingMovies()
    }
 
 }

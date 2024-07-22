@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieCardComponent } from "../../components/movie-card/movie-card.component";
-import { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } from "../../../assets/mock/mock-data"
 import { ActivatedRoute } from '@angular/router';
 import { HeaderComponent } from "../../components/header/header.component";
+import { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } from '../../mock/mock-data';
 
 @Component({
    selector: 'app-details-page',

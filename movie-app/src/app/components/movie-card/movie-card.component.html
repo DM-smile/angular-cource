@@ -16,10 +16,21 @@
   </p>
 </div>
 <div class="movie-card__buttons">
-  <button (click)="addToFavorites()" title="Add to favorites">
+  @if(!isFavoritePage){
+  <button (click)="addToFavorites(movie)" title="Add to favorites">
     <img src="../../../assets/img/like.svg" alt="#" />
   </button>
-  <button (click)="addToWatchList()" title="Add to watch list">
+  } @else {
+  <button (click)="removeFavorite(movie)" title="Remove from favorites">
+    <img src="../../../assets/img/cross.svg" alt="#" />
+  </button>
+  } @if(!isWatchListPage){
+  <button (click)="addToWatchList(movie)" title="Add to watch list">
     <img src="../../../assets/img/plus.svg" alt="#" />
   </button>
+  } @else {
+  <button (click)="removeWatchList(movie)" title="Remove from watch list">
+    <img src="../../../assets/img/cross.svg" alt="#" />
+  </button>
+  }
 </div>

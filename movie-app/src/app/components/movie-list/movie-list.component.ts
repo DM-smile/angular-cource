@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MovieCardComponent } from "../movie-card/movie-card.component";
 import { CommonModule } from '@angular/common';
-import { popularMovies, nowPlayingMovies, topRatedMovies, upcomingMovies } from '../../../assets/mock/mock-data';
+import { popularMovies } from '../../mock/mock-data';
 
 @Component({
    selector: 'app-movie-list',
