@@ -1,0 +1,9 @@
+<h2>Upcoming</h2>
+<div class="movie-list">
+  <div class="movie-list__card-container">
+    @if (upcomingMovies.length>0) { @for (item of upcomingMovies; track item.id)
+    {
+    <app-movie-card class="movie-card" [data]="item"> </app-movie-card>
+    } }
+  </div>
+</div>

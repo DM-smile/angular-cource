@@ -1,0 +1,8 @@
+@if(favoriteMovies.length > 0){
+<h2>Favorite movies:</h2>
+}
+<div class="favorites-container">
+  @for (item of favoriteMovies; track item.id) {
+  <app-movie-card [data]="item"></app-movie-card>
+  }
+</div>

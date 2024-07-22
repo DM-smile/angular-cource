@@ -1,0 +1,8 @@
+<h2>Popular</h2>
+<div class="movie-list">
+  <div class="movie-list__card-container">
+    @if (popularMovies.length>0) { @for (item of popularMovies; track item.id) {
+    <app-movie-card class="movie-card" [data]="item"> </app-movie-card>
+    } }
+  </div>
+</div>
