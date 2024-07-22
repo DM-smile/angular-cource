@@ -13,13 +13,13 @@ export class MovieService {
    constructor() { }
 
    getNowPlayingMovies() {
-      return upcomingMovies
+      return nowPlayingMovies
    }
    getPopularMovies() {
-      return upcomingMovies
+      return popularMovies
    }
    getTopRatedMovies() {
-      return upcomingMovies
+      return topRatedMovies
    }
    getUpcomingMovies() {
       return upcomingMovies
