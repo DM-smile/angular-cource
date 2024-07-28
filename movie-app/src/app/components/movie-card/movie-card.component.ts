@@ -15,6 +15,7 @@ import { MovieService } from '../../services/movie.service';
    imports: [CommonModule, DateFormatPipe, CardModule, ButtonModule, RouterLink]
 })
 export class MovieCardComponent implements OnInit {
+   @Input() data: any
 
    setToFavoritesMovie() {
       throw new Error('Method not implemented.');
@@ -28,9 +29,6 @@ export class MovieCardComponent implements OnInit {
    isWatchListPage: boolean = false
 
    movie: any
-
-   @Input() data: any
-
 
    ngOnInit() {
       this.movie = this.data

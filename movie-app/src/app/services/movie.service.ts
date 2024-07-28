@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } from '../mock/mock-data';
+import { Observable } from 'rxjs';
+import { MovieApiModel, MovieDetailsApiModel } from '../models/movie.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
    providedIn: 'root'
@@ -7,22 +9,28 @@ import { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } from 
 
 
 export class MovieService {
-   allMovies = [...new Set([...nowPlayingMovies, ...popularMovies, ...topRatedMovies, ...upcomingMovies])]
    favMovies: any[] = []
    watchList: any[] = []
-   constructor() { }
 
-   getNowPlayingMovies() {
-      return nowPlayingMovies
+   baseApiUrl = 'https://api.themoviedb.org/3/movie'
+
+   apiTocken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNmZmNTI0ZjRiMWI2MWUyNDQxOTRkNzU3MTZkMDA2ZiIsIm5iZiI6MTcyMTkyNjc3NC43MTg5MSwic3ViIjoiNjZhMjdhZTg2YzliNTExZjg1MWI5MzZkIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.jTbqABQ2wxUpAp7nzM6x9XaRrRog6qt6iD4ulc823ZQ'
+
+   apiKey = '?api_key=c6ff524f4b1b61e244194d75716d006f'
+
+   constructor(private httpClient: HttpClient) { }
+
+   getNowPlayingMovies(): Observable<MovieApiModel> {
+      return this.httpClient.get<MovieApiModel>(`${this.baseApiUrl}/now_playing${this.apiKey}`)
    }
-   getPopularMovies() {
-      return popularMovies
+   getPopularMovies(): Observable<MovieApiModel> {
+      return this.httpClient.get<MovieApiModel>(`${this.baseApiUrl}/popular${this.apiKey}`)
    }
-   getTopRatedMovies() {
-      return topRatedMovies
+   getTopRatedMovies(): Observable<MovieApiModel> {
+      return this.httpClient.get<MovieApiModel>(`${this.baseApiUrl}/top_rated${this.apiKey}`)
    }
-   getUpcomingMovies() {
-      return upcomingMovies
+   getUpcomingMovies(): Observable<MovieApiModel> {
+      return this.httpClient.get<MovieApiModel>(`${this.baseApiUrl}/upcoming${this.apiKey}`)
    }
 
    setToFavoritesMovie(movie: any) {
@@ -44,19 +52,16 @@ export class MovieService {
          this.watchList.push(movie)
    }
    removeFroWatchList(movie: any) {
-      const index = this.watchList.findIndex(item => item.id === movie.id);
+      const index = this.watchList.findIndex(item => item.id === movie.id)
       if (index !== -1) {
-         this.watchList.splice(index, 1);
+         this.watchList.splice(index, 1)
       }
    }
    getToWatchList() {
       return this.watchList
    }
+   getDetailsPage(id: string): Observable<MovieDetailsApiModel> {
+      return this.httpClient.get<MovieDetailsApiModel>(`${this.baseApiUrl}/${id}${this.apiKey}`)
 
-   getMovieById(id: number) {
-      this.allMovies.filter(movie => movie.id === id)
    }
-
-
-
 }

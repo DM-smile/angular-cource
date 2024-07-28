@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { CommonModule } from '@angular/common';
-import { MovieListComponent } from "../../components/movie-list/movie-list.component";
 import { MovieService } from '../../services/movie.service';
 
 
@@ -11,9 +10,9 @@ import { MovieService } from '../../services/movie.service';
    standalone: true,
    templateUrl: './popular-movies-page.component.html',
    styleUrl: './popular-movies-page.component.scss',
-   imports: [HeaderComponent, MovieCardComponent, CommonModule, MovieListComponent]
+   imports: [HeaderComponent, MovieCardComponent, CommonModule]
 })
-export class PopularMoviesPageComponent {
+export class PopularMoviesPageComponent implements OnInit {
 
    popularMovies: any[] = []
 
@@ -21,7 +20,9 @@ export class PopularMoviesPageComponent {
    constructor(private movieService: MovieService) { }
 
    ngOnInit(): void {
-      this.popularMovies = this.movieService.getPopularMovies()
+      this.movieService.getPopularMovies().subscribe(data => {
+         this.popularMovies = data.results
+      })
    }
 
 }

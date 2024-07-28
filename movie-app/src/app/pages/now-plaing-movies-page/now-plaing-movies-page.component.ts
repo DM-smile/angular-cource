@@ -1,10 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { CommonModule } from '@angular/common';
-import { MovieListComponent } from '../../components/movie-list/movie-list.component';
-import { Router } from '@angular/router';
-import { nowPlayingMovies } from '../../mock/mock-data';
 import { MovieService } from '../../services/movie.service';
 
 @Component({
@@ -12,17 +9,18 @@ import { MovieService } from '../../services/movie.service';
    standalone: true,
    templateUrl: './now-plaing-movies-page.component.html',
    styleUrl: './now-plaing-movies-page.component.scss',
-   imports: [HeaderComponent, MovieCardComponent, CommonModule, MovieListComponent]
+   imports: [HeaderComponent, MovieCardComponent, CommonModule]
 })
-export class NowPlaingMoviesPageComponent {
+export class NowPlaingMoviesPageComponent implements OnInit {
 
    nowPlaingMovies: any[] = []
-
 
    constructor(private movieService: MovieService) { }
 
    ngOnInit(): void {
-      this.nowPlaingMovies = this.movieService.getNowPlayingMovies()
+      this.movieService.getNowPlayingMovies().subscribe(data => {
+         this.nowPlaingMovies = data.results
+      })
    }
 
 }

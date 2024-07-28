@@ -14,10 +14,6 @@ import { MovieService } from './services/movie.service';
    imports: [MovieCardComponent, RouterOutlet, RouterModule, RouterLink, SidebarComponent, CommonModule, RouterLinkActive, HeaderComponent]
 })
 
-export class AppComponent implements OnInit {
-   upcoming: any[] = []
-   constructor(private movieService: MovieService) { }
-   ngOnInit(): void {
-      this.upcoming = this.movieService.getUpcomingMovies()
-   }
+export class AppComponent {
+
 }

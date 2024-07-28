@@ -1,5 +1,8 @@
 <a [routerLink]="['/movie', movie.id]"
-  ><img [src]="data?.poster_path" alt="image poster" class="movie-card__image"
+  ><img
+    src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}"
+    alt="image poster"
+    class="movie-card__image"
 /></a>
 <div class="movie-card__details">
   <h2
@@ -18,19 +21,23 @@
 <div class="movie-card__buttons">
   @if(!isFavoritePage){
   <button (click)="addToFavorites(movie)" title="Add to favorites">
-    <img src="../../../assets/img/like.svg" alt="#" />
+    <img src="assets/img/like.svg" alt="#" />
   </button>
   } @else {
   <button (click)="removeFavorite(movie)" title="Remove from favorites">
-    <img src="../../../assets/img/cross.svg" alt="#" />
+    <img src="assets/img/cross.svg" alt="#" />
   </button>
-  } @if(!isWatchListPage){
+  }
+  <h2 class="movie-card__title--buttons-block">
+    {{ data?.title }}
+  </h2>
+  @if(!isWatchListPage){
   <button (click)="addToWatchList(movie)" title="Add to watch list">
-    <img src="../../../assets/img/plus.svg" alt="#" />
+    <img src="assets/img/plus.svg" alt="#" />
   </button>
   } @else {
   <button (click)="removeWatchList(movie)" title="Remove from watch list">
-    <img src="../../../assets/img/cross.svg" alt="#" />
+    <img src="assets/img/cross.svg" alt="#" />
   </button>
   }
 </div>

@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { CommonModule } from '@angular/common';
-import { MovieListComponent } from "../../components/movie-list/movie-list.component";
 import { MovieService } from '../../services/movie.service';
 
 @Component({
@@ -10,9 +9,9 @@ import { MovieService } from '../../services/movie.service';
    standalone: true,
    templateUrl: './top-rate-movies-page.component.html',
    styleUrl: './top-rate-movies-page.component.scss',
-   imports: [HeaderComponent, MovieCardComponent, CommonModule, MovieListComponent]
+   imports: [HeaderComponent, MovieCardComponent, CommonModule]
 })
-export class TopRateMoviesPageComponent {
+export class TopRateMoviesPageComponent implements OnInit {
 
 
    topRatedMovies: any[] = []
@@ -21,7 +20,9 @@ export class TopRateMoviesPageComponent {
    constructor(private movieService: MovieService) { }
 
    ngOnInit(): void {
-      this.topRatedMovies = this.movieService.getTopRatedMovies()
+      this.movieService.getTopRatedMovies().subscribe(data => {
+         this.topRatedMovies = data.results
+      })
    }
 
 }

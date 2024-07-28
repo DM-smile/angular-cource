@@ -3,28 +3,31 @@
   <div class="details-page__body">
     <div class="details-page__main">
       <div class="details-page__image">
-        <img [src]="movie.poster_path" alt="poster" />
+        <img
+          src="https://image.tmdb.org/t/p/w500/{{ movie?.poster_path }}"
+          alt="movie.title"
+        />
       </div>
     </div>
     <div class="details-page__content">
       <h2 class="details-page__title">
-        {{ movie.title }}
+        {{ movie?.title }}
       </h2>
       <div class="details-page__popularity">
-        Popularity: {{ movie.popularity }}
+        Popularity: {{ movie?.popularity }}
       </div>
       <div class="details-page__release-date">
-        Release date: {{ movie.release_date }}
+        Release date: {{ movie?.release_date }}
       </div>
       <div class="details-page__vote-average">
-        Average: {{ movie.vote_average }}
+        Average: {{ movie?.vote_average }}
       </div>
-      <div class="details-page__vote-count">Votes: {{ movie.vote_count }}</div>
+      <div class="details-page__vote-count">Votes: {{ movie?.vote_count }}</div>
       <div class="details-page__original-language">
         Original language:
-        {{ movie.original_language }}
+        {{ movie?.original_language }}
       </div>
     </div>
   </div>
-  <div class="details-page__overview">{{ movie.overview }}</div>
+  <div class="details-page__overview">{{ movie?.overview }}</div>
 </div>

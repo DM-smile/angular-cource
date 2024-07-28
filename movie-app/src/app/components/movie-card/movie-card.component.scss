@@ -43,6 +43,12 @@
    // .movie-card__title
 
    &__title {
+      &--buttons-block {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-size: toRem(15);
+      }
    }
 
    // .movie-card__rating
@@ -66,7 +72,8 @@
       left: toRem(0);
       font-size: toRem(30);
       gap: toRem(10);
-      justify-content: space-around;
+      justify-content: space-between;
+      padding: 0 toRem(15);
       transition: all 0.2s;
 
       background-color: black;

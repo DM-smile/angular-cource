@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieCardComponent } from "../../components/movie-card/movie-card.component";
 import { ActivatedRoute } from '@angular/router';
 import { HeaderComponent } from "../../components/header/header.component";
-import { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } from '../../mock/mock-data';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
    selector: 'app-details-page',
@@ -14,30 +14,19 @@ import { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } from 
 export class DetailsPageComponent implements OnInit {
    favoriteMoviesIds: any;
    watchLaterMovieIds: any;
-   constructor(private route: ActivatedRoute) { }
+   constructor(private route: ActivatedRoute, private moviServise: MovieService) { }
 
    movie: any;
-   handleAddToWatchList(_t2: any) {
-      throw new Error('Method not implemented.');
-   }
-   handleAddToFavorite(_t2: any) {
-      throw new Error('Method not implemented.');
-   }
-
-   movies = [
-      ...nowPlayingMovies,
-      ...popularMovies,
-      ...topRatedMovies,
-      ...upcomingMovies
-   ]
 
    ngOnInit(): void {
       const id = this.route.snapshot.paramMap.get('id')
-      if (id)
-         this.movie = this.movies.find((movieItem) => movieItem.id === parseInt(id))
+      if (id) {
+         this.moviServise.getDetailsPage(id).subscribe(data => {
+            this.movie = data
+         })
+      }
+
    }
-
-
 }
 
 
