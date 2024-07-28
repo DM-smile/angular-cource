@@ -1,32 +1,43 @@
-<p-card>
-  <ng-template pTemplate="header">
-    <img
-      alt="{{ data.title }}"
-      [src]="data.backdrop_path"
-      class="movie-card__image"
-    />
-  </ng-template>
-  <div class="movie-card__details">
-    <h2 class="movie-card__title">{{ data.title }}</h2>
-    <p class="movie-card__overview">{{ data.overview }}</p>
-    <p class="movie-card__rating">Рейтинг: {{ data.vote_average }}</p>
-    <p class="movie-card__relise">
-      Дата виходу: {{ data.release_date | dateFormat }}
-    </p>
-  </div>
-  <ng-template pTemplate="footer">
-    <p-button
-      class="button"
-      (click)="addToFavorites()"
-      label="❤️"
-      severity="secondary"
-      title="Додати до улюблених"
-    />
-    <p-button
-      class="button"
-      (click)="addToWatchList()"
-      label="⭐️"
-      title="Додати до списку перегляду"
-    />
-  </ng-template>
-</p-card>
+<a [routerLink]="['/movie', movie.id]"
+  ><img
+    src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}"
+    alt="image poster"
+    class="movie-card__image"
+/></a>
+<div class="movie-card__details">
+  <h2
+    class="movie-card__title"
+    [ngClass]="{
+      'movie-card__title--large-title': titleSpan.offsetWidth > 240
+    }"
+  >
+    <span #titleSpan>{{ data?.title }}</span>
+  </h2>
+  <p class="movie-card__rating">Average: {{ data?.vote_average }}</p>
+  <p class="movie-card__relise">
+    Release date: {{ data?.release_date | dateFormat }}
+  </p>
+</div>
+<div class="movie-card__buttons">
+  @if(!isFavoritePage){
+  <button (click)="addToFavorites(movie)" title="Add to favorites">
+    <img src="assets/img/like.svg" alt="#" />
+  </button>
+  } @else {
+  <button (click)="removeFavorite(movie)" title="Remove from favorites">
+    <img src="assets/img/cross.svg" alt="#" />
+  </button>
+  }
+  <h2 class="movie-card__title--buttons-block">
+    {{ data?.title }}
+  </h2>
+  @if(!isWatchListPage){
+  <button (click)="addToWatchList(movie)" title="Add to watch list">
+    <img src="assets/img/plus.svg" alt="#" />
+  </button>
+  } @else {
+  <button (click)="removeWatchList(movie)" title="Remove from watch list">
+    <img src="assets/img/cross.svg" alt="#" />
+  </button>
+  }
+</div>
